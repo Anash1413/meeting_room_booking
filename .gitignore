@@ -1,0 +1,45 @@
+# Dependencies (root, server/node_modules, client/node_modules)
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+
+# Environment files
+.env
+.env.*
+.env*.local
+.env.development
+.env.production
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Tooling / AI Agent cache directories
+.agents/
+.aider-desk/
+.claude/
+.cursor/
+.devin/
+.gemini/
+
+# OS / Editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

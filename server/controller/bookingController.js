@@ -10,12 +10,12 @@ const { checkConflict, findNextAvail } = require("../utils/helper")
     try {
         const {date , startTime , endTime , roomId , title } = req.body
         const existingBookings = await prisma.booking.findMany({where:{roomId:roomId , date: date}})
-        console.log(existingBookings)
+        // console.log(existingBookings)
         const conflict = checkConflict(startTime , endTime , existingBookings)
         if(conflict.conflict){
             return res.status(400).json(conflict)
         }
-
+ 
        await prisma.booking.create({
             data: {
                 title:title, date :date , endTime:endTime , startTime :startTime , roomId:roomId 
@@ -114,11 +114,13 @@ const { checkConflict, findNextAvail } = require("../utils/helper")
  exports.nextAvail = async (req , res) => {
      
      try {
-      const {date , roomId, duration} = req.body ||req.query
+      const date = req.body?.date || req.query?.date
+      const roomId = req.body?.roomId || req.query?.roomId
+      const duration = req.body?.duration || req.query?.duration
       const existingBookings = await prisma.booking.findMany({where:{roomId:roomId , date: date}})
-      const AvailbleSlot = findNextAvail(existingBookings , duration)
-      if(typeof(AvailbleSlot) === null){
-         return res.json({
+      const AvailbleSlot = findNextAvail(existingBookings , Number(duration))
+      if(!AvailbleSlot){
+         return res.status(404).json({
              message:"sorry we dont have booking opt for your duration"
          })
       }
