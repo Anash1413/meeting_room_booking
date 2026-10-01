@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "Maviz Ahmad",
+  "license": "MIT",
+  "private": null,
+  "type": "commonjs",
+  "dependencies": {
+    "@prisma/client": "5.22.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prisma": "5.22.0"
+  },
+  "scripts": {
+    "postinstall": "prisma skills sync || exit 0",
+    "start": "nodemon app.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  }
+}
