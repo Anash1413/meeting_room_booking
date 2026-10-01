@@ -6,7 +6,7 @@ const app = express()
 const roomRouter = require('./routes/roomRoutes')
 const bookingRouter = require('./routes/bookingRoute')
 
- app.use(cors({origin:['http://localhost:3000']}))
+ app.use(cors({origin:['http://localhost:3000', 'https://maviz-room-booking.vercel.app']}))
 app.use(express.json())
 app.use('/api', roomRouter)
 app.use('/api/booking', bookingRouter)
